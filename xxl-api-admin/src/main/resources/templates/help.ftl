@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<title>Api管理平台</title>
+  	<title>接口管理平台</title>
   	<#import "common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
 </head>
@@ -22,7 +22,7 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="callout callout-info">
-				<h4>Api管理平台</h4>
+				<h4>接口管理平台</h4>
 				<br>
 				<p>
                     <a target="_blank" href="https://github.com/xuxueli/xxl-api">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;

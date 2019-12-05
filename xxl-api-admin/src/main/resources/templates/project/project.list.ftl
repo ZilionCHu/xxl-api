@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<title>API管理平台</title>
+  	<title>接口管理平台</title>
   	<#import "../common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
 	<!-- DataTables -->
