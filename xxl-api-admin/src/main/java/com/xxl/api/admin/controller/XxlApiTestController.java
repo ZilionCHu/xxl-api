@@ -1,24 +1,23 @@
 package com.xxl.api.admin.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xxl.api.admin.core.consistant.RequestConfig;
 import com.xxl.api.admin.core.model.ReturnT;
 import com.xxl.api.admin.core.model.XxlApiDocument;
 import com.xxl.api.admin.core.model.XxlApiProject;
 import com.xxl.api.admin.core.model.XxlApiTestHistory;
 import com.xxl.api.admin.core.util.JacksonUtil;
-import com.xxl.api.admin.core.util.tool.StringTool;
 import com.xxl.api.admin.core.util.ThrowableUtil;
+import com.xxl.api.admin.core.util.tool.StringTool;
 import com.xxl.api.admin.dao.IXxlApiDocumentDao;
 import com.xxl.api.admin.dao.IXxlApiProjectDao;
 import com.xxl.api.admin.dao.IXxlApiTestHistoryDao;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,12 +166,15 @@ public class XxlApiTestController {
 			HttpPost httpPost = new HttpPost(xxlApiTestHistory.getRequestUrl());
 			// query params
 			if (queryParamMap != null && !queryParamMap.isEmpty()) {
-				List<NameValuePair> formParams = new ArrayList<NameValuePair>();
-				for(Map.Entry<String,String> entry : queryParamMap.entrySet()){
-					formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
-				}
+//				List<NameValuePair> formParams = new ArrayList<NameValuePair>();
+//				for(Map.Entry<String,String> entry : queryParamMap.entrySet()){
+//					formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+//				}
 				try {
-					httpPost.setEntity(new UrlEncodedFormEntity(formParams, "UTF-8"));
+					//JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(formParams));
+					//httpPost.setEntity(new UrlEncodedFormEntity(formParams, "UTF-8"));
+					String s = JSON.toJSONString(queryParamMap);
+					httpPost.setEntity(new StringEntity(s));
 				} catch (UnsupportedEncodingException e) {
 					logger.error(e.getMessage(), e);
 				}
